@@ -4,10 +4,9 @@ document.addEventListener("DOMContentLoaded", ()=> {
   const themeChanger = document.querySelector('.theme-changer');
   const countriesContainer = document.querySelector('.countries-container');
   const filterByRegion = document.querySelector('.filter-by-region');
- 
-  
+  const countryClick = document.querySelector('.country-click');
+
   let allCountriesData;
-  
   
   fetch('https://restcountries.com/v3.1/all')
     .then((res) => res.json())
@@ -40,6 +39,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
                 <p><b>Capital: </b>${country.capital?.[0]}</p>
                 
             </div>
+            <div> </div>
     `;
       countriesContainer.append(countryCard);
     });
@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
   
   
   searchInput.addEventListener('input',  (e) => {
+
     const filteredCountries = allCountriesData.filter((country) => country.name.common.toLowerCase().includes(e.target.value.toLowerCase()));
     renderCountries(filteredCountries);
   });
@@ -57,7 +58,8 @@ document.addEventListener("DOMContentLoaded", ()=> {
   })
   
   
-  countryCard.addEventListener('click', () => {
-   alert("not clickable, enter its name to view it.");
+  countriesContainer.addEventListener('click', (e) => {
+      console.log(e);
+  
   });
   });
